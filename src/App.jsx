@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { supabase } from './supabase.js'
 
-const UNLOCK_THRESHOLD = 100
-const PAY_PER_100      = 1000
+const UNLOCK_THRESHOLD = 200
+const PAY_PER_200      = 6000
 const colors  = ['#4F8EF7','#1DCE8A','#FF6B4A','#A78BFA','#F59E42']
 const lightBg = ['#EBF3FF','#E1FBF2','#FFF0EC','#F4F0FF','#FFF7ED']
 
@@ -13,7 +13,7 @@ function getNextTuesday() {
   next.setDate(now.getDate() + diff)
   return next.toLocaleDateString('fr-FR', { day:'2-digit', month:'long' })
 }
-function calcPay(w) { return Math.floor(w / 100) * PAY_PER_100 }
+function calcPay(w) { return Math.floor(w / 200) * PAY_PER_200 }
 
 function Login({ onLogin }) {
   const [slug, setSlug] = useState('')
@@ -266,9 +266,9 @@ function Dashboard({ emp: initialEmp, onLogout }) {
 
             <div style={S.card}>
               {[
-                {n:'1',icon:'🔒',title:'Atteins 100 clics',desc:'Tu dois avoir au moins 100 clics au total avant de recevoir ton premier paiement.'},
+                {n:'1',icon:'🔒',title:'Atteins 200 clics',desc:'Tu dois avoir au moins 200 clics au total avant de recevoir ton premier paiement.'},
                 {n:'2',icon:'📅',title:'Paiement chaque mardi',desc:'Chaque mardi, tes clics de la semaine sont comptés et tu reçois ton argent.'},
-                {n:'3',icon:'💰',title:'1 000 FCFA / 100 clics',desc:'Pour chaque tranche de 100 clics dans la semaine, tu reçois 1 000 FCFA.'},
+                {n:'3',icon:'💰',title:'6 000 FCFA / 200 clics',desc:'Pour chaque tranche de 200 clics dans la semaine, tu reçois 6 000 FCFA.'},
                 {n:'4',icon:'🔄',title:'Remise à zéro hebdo',desc:'Après chaque paiement du mardi, ton compteur de la semaine repart à zéro.'},
               ].map((r,i)=>(
                 <div key={i} style={{display:'flex',gap:14,padding:'14px 0',borderBottom:i<3?'1px solid #f5f5f5':'none'}}>
@@ -284,10 +284,10 @@ function Dashboard({ emp: initialEmp, onLogout }) {
             <div style={{...S.card,background:'#f0f7ff',border:'1px solid #bfdbfe'}}>
               <div style={{fontWeight:700,fontSize:14,marginBottom:10,color:'#1e40af'}}>📊 Exemples de gains</div>
               {[
-                {clics:100,gains:1000},
-                {clics:250,gains:2000},
-                {clics:500,gains:5000},
-                {clics:1000,gains:10000},
+                {clics:200,gains:6000},
+                {clics:450,gains:12000},
+                {clics:500,gains:15000},
+                {clics:1000,gains:30000},
               ].map((ex,i)=>(
                 <div key={i} style={{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:i<3?'1px solid #dbeafe':'none',fontSize:14}}>
                   <span style={{color:'#1e40af'}}>{ex.clics} clics/semaine</span>
